@@ -4,6 +4,9 @@ const pg = require('pg');
 const express = require('express');
 const dotenv = require('dotenv');
 
+const db = require('./../database/index.js');
+
+
 dotenv.config();
 
 
