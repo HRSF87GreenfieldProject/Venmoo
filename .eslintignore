@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+# Test files
+=======
+# Ignore test files
+>>>>>>> lint
+test/*
