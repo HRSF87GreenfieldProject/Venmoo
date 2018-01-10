@@ -1,6 +1,12 @@
 const { Client } = require('pg');
 
+<<<<<<< HEAD
 const client = new Client();
+=======
+const client = new Client({
+  database: 'venmoo',
+});
+>>>>>>> lint
 
 client.connect();
 
@@ -9,6 +15,7 @@ const getTransactionHistory = function (userName) {
   transactions.created_timestamp, transactions.resolved_timestamp, transactions.description
   FROM transactions, users
   WHERE (transactions.sender_id=users.id AND users.name='${userName}')
+<<<<<<< HEAD
 <<<<<<< HEAD
   OR (transactions.receiver_id=users.id AND users.name='${userName}')`
 =======
@@ -22,6 +29,11 @@ const getTransactionHistory = function (userName) {
     .catch((err) => {
       console.error(err);
     });
+=======
+  OR (transactions.receiver_id=users.id AND users.name='${userName}')`;
+
+  return client.query(queryString);
+>>>>>>> lint
 };
 
 module.exports.getTransactionHistory = getTransactionHistory;

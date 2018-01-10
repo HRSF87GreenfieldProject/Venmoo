@@ -21,6 +21,7 @@ coverage
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 client/dist/bundle.js
+bundle.js
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:
@@ -30,5 +31,8 @@ bower_components/
 
 .env
 
+<<<<<<< HEAD
 # Test files
 test
+=======
+>>>>>>> lint
