@@ -30,4 +30,4 @@ bower_components/
 
 .env
 
-*.env.js
+database/env.js
