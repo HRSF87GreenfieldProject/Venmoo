@@ -9,7 +9,7 @@ const getTransactionHistory = function (userName) {
   transactions.created_timestamp, transactions.resolved_timestamp, transactions.description
   FROM transactions, users
   WHERE (transactions.sender_id=users.id AND users.name='${userName}')
-  OR (transactions.receiver_id=users.id AND users.name='${userName}')`
+  OR (transactions.receiver_id=users.id AND users.name='${userName}')`;
 
   client.query(queryString)
     .then((results) => {
