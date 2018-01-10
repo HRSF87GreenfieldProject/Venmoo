@@ -30,9 +30,3 @@ node_modules/
 bower_components/
 
 .env
-
-<<<<<<< HEAD
-# Test files
-test
-=======
->>>>>>> lint
