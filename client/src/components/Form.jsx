@@ -1,7 +1,25 @@
 import React from 'react';
-// const React = require('react');
-// import Pay from './Pay';
-// import Request from './Request';
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+import axios from 'axios';
+=======
+import axios from 'axios'
+>>>>>>> Adds post request through axios in form component
+=======
+import axios from 'axios'
+>>>>>>> Adds post request through axios in form component
+=======
+
+>>>>>>> More clarity
+=======
+import axios from 'axios';
+>>>>>>> Adds axios POST request
+=======
+import axios from 'axios';
+>>>>>>> e2e9c0821155a3f28647b98cba29e9247ca673d2
 
 class Form extends React.Component {
   constructor(props) {
@@ -54,9 +72,73 @@ class Form extends React.Component {
 
   formSubmitHandler(event) {
     event.preventDefault();
-    // if(this.state.isPayment) {
-    // } else {
-    // }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    var url = this.state.isPayment ? '/payment' : '/request';
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> Adds post request through axios in form component
+=======
+
+>>>>>>> Adds post request through axios in form component
+=======
+    var url = this.state.isPayment ? '/payment' : '/request';
+>>>>>>> Adds axios POST request
+=======
+    var url = this.state.isPayment ? '/payment' : '/request';
+>>>>>>> e2e9c0821155a3f28647b98cba29e9247ca673d2
+    axios.post(url, {
+      username: this.state.otherUser,
+      amount: this.state.amount,
+      isPayment: this.state.isPayment,
+      message: this.state.message
+    })
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    .then((response) => {
+      console.log(response)
+=======
+    .then((response) => {
+<<<<<<< HEAD
+      console.log(response.data)
+>>>>>>> Adds axios POST request
+=======
+      console.log(response)
+>>>>>>> More test fixing
+=======
+    .then((response) => {
+      console.log(response)
+>>>>>>> e2e9c0821155a3f28647b98cba29e9247ca673d2
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> Adds post request through axios in form component
+      .then((response) => {
+        console.log(response); 
+      })
+      .catch((error) => {
+      });
+<<<<<<< HEAD
+>>>>>>> Adds post request through axios in form component
+=======
+>>>>>>> Adds post request through axios in form component
+=======
+
+>>>>>>> More clarity
+=======
+>>>>>>> Adds axios POST request
+=======
+>>>>>>> e2e9c0821155a3f28647b98cba29e9247ca673d2
   }
 
   render() {

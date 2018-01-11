@@ -3,8 +3,8 @@ const server = require('./../server/index.js').app;
 const db = require('./../database/index.js');
 
 const supertest = require('supertest');
-
 const request = supertest.agent(server);
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { configure, shallow, mount, render } from 'enzyme';
@@ -12,20 +12,20 @@ import ProfilePage from '../client/src/components/ProfilePage.jsx';
 import Adapter from 'enzyme-adapter-react-16';
 import SignUp from '../client/src/components/SignUp.jsx';
 
-console.log(process.env.DATABASE_URL);
+// console.log(process.env.DATABASE_URL);
 
 configure({ adapter: new Adapter() });
 
 describe('server', () => {
   describe('GET /user/:id', () => {
-    xit('should return an object of user info when id is a user', function(done) {
+    it('should return an object of user info when id is a user', function(done) {
       request
           .get('/user/1')
           .expect(200)
           .expect(/annie/, done) //not perfect put better than anything we got
     })
 
-    xit('should 404 when given an invalid user id', function(done) {
+    it('should 404 when given an invalid user id', function(done) {
       request
         .get('/user/999999')
         .expect(404, done)
@@ -35,6 +35,38 @@ describe('server', () => {
           .expect(404, done)
     })
   });
+
+  describe('POST /payments and /request', () => {
+    it('should 201 when posting to /payment', function(done) {
+    request
+      .post('/payment', {username: 'test',
+        amount: '30',
+        isPayment: true,
+        message: 'This is a test!'})
+      .expect('Success!')
+      .expect(201, done)
+    });
+
+    it('should 201 when posting to /request', function(done) {
+    request
+      .post('/request', {username: 'test',
+        amount: '30',
+        isPayment: false,
+        message: 'This is a test!'})
+      .expect('Success!')
+      .expect(201, done)
+    });
+
+    xit('should 404 when posting to /payment when invalid params', function(done) {
+    request
+      .post('/request', {username: 'test',
+        amount: '30',
+        })
+      .expect(404, done)
+    });
+
+  })
+
 });
 
 
