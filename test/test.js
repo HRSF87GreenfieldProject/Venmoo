@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const expect = require('chai').expect;
 const server = require('./../server/index.js');
 
@@ -12,34 +11,6 @@ import SignUp from '../client/src/components/SignUp.jsx';
 configure({ adapter: new Adapter() });
 
 describe('server', () => {
-  it('Example test should pass', () => {
-    expect(1).to.not.equal(2);
-  });
-});
-
-describe('react router login test', () => {
-  it('should render profile page on login', () => {
-    const component = shallow(<ProfilePage />);
-    expect(component.find('div').toExist);
-  });
-});
-
-describe("react router signup test", () => {
-  it("should render signup on login", () => {
-    const component = shallow(<SignUp />);
-    expect(component.find("div").toExist);
-  });
-});
-=======
-const {should, assert} = require('chai');
-const supertest = require('supertest');
-
-const server = require('./../server').app;
-const request = supertest.agent(server);
-
-
-describe('server', function() {
-  console.log(process.env)
   describe('GET /user/:id', () => {
 
     it('should return an object of user info when id is a user', function(done) {
@@ -57,8 +28,19 @@ describe('server', function() {
         request
           .get('/user/abc')
           .expect(404, done)
-     })
+    })
+});
 
+describe('react router login test', () => {
+  it('should render profile page on login', () => {
+    const component = shallow(<ProfilePage />);
+    expect(component.find('div').toExist);
   });
-})
->>>>>>> valid tests for GET /user/id
+});
+
+describe("react router signup test", () => {
+  it("should render signup on login", () => {
+    const component = shallow(<SignUp />);
+    expect(component.find("div").toExist);
+  });
+});
