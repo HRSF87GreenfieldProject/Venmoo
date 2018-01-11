@@ -44,8 +44,8 @@ describe('server', function() {
     it('should return an object of user info when id is a user', function(done) {
       request
         .get('/user/1')
-        .expect(200)
-        .expect(/annie/, done) //not perfect put better than anything we got
+        .expect(200, done)
+        //.expect(/annie/, done) //not perfect put better than anything we got
     })
 
     it('should 404 when given an invalid user id', function(done) {
