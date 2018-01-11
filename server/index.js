@@ -2,9 +2,14 @@ const path = require('path');
 const express = require('express');
 require('dotenv').config();
 const db = require('../database');
+const expressRenderJsx = require('express-render-jsx');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-render-jsx'));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
@@ -41,6 +46,17 @@ app.get('/db', (request, response) => {
   });
 });
 
+app.get('/profilepage', (req, res) => {
+  res.status(200).render(path.join(__dirname, '../client/src/components/ProfilePage.jsx'));
+});
+
+app.get('/login', (req, res) => {
+  res.status(200).render(path.join(__dirname, '../client/src/components/Login.jsx'));
+});
+
+app.get('/signup', (req, res) => {
+  res.status(200).render(path.join(__dirname, '../client/src/components/SignUp.jsx'));
+});
 
 if (!module.parent) {
   app.listen(PORT);
