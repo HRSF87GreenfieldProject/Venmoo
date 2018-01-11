@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id SERIAL NOT NULL PRIMARY KEY,
   name VARCHAR(30) NOT NULL,
+  password VARCHAR(30) NOT NULL,
   balance MONEY NOT NULL
 );
 
@@ -26,13 +27,13 @@ CREATE TABLE transactions (
 );
 
 -- INSERT DUMMY DATA
-INSERT INTO users(name, balance) VALUES('annie', 100);
-INSERT INTO users(name, balance) VALUES('bonnie', 120);
-INSERT INTO users(name, balance) VALUES('connie', 0);
-INSERT INTO users(name, balance) VALUES('donny', 50);
-INSERT INTO users(name, balance) VALUES('eddie', 71);
-INSERT INTO users(name, balance) VALUES('freddy', 65);
-INSERT INTO users(name, balance) VALUES('geddy', 88);
+INSERT INTO users(name, password, balance) VALUES('annie', '123', 100);
+INSERT INTO users(name, password, balance) VALUES('bonnie', '123',  120);
+INSERT INTO users(name, password, balance) VALUES('connie', '123',  0);
+INSERT INTO users(name, password, balance) VALUES('donny', '123', 50);
+INSERT INTO users(name, password, balance) VALUES('eddie', '123', 71);
+INSERT INTO users(name, password, balance) VALUES('freddy', '123',  65);
+INSERT INTO users(name, password, balance) VALUES('geddy', '123', 88);
 
 INSERT INTO transactions(sender_id, receiver_id, amount, status, type, created_timestamp, resolved_timestamp) VALUES(1,2,48,'approved','payment','2018-01-01 4:05:06', '2018-01-01 4:05:06');
 INSERT INTO transactions(sender_id, receiver_id, amount, status, type, created_timestamp, resolved_timestamp) VALUES(1,2,153,'approved','request','2018-01-02 4:05:15', '2018-01-02 15:21:00');
