@@ -2,16 +2,12 @@ const path = require('path');
 const express = require('express');
 require('dotenv').config();
 const db = require('../database');
+const expressRenderJsx = require('express-render-jsx');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
-
-
-
-
-
 
 
 app.get('/user/:id', (req, res) => {
@@ -41,6 +37,13 @@ app.get('/db', (request, response) => {
   });
 });
 
+const reactRoute = (req, res) => res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));
+
+app.get('/profilepage', reactRoute);
+
+app.get('/login', reactRoute);
+
+app.get('/signup', reactRoute);
 
 if (!module.parent) {
   app.listen(PORT);
