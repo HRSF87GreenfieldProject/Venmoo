@@ -1,7 +1,7 @@
 // const { users, transactions } = require('./dummy-data.js')
 const { Client } = require('pg');
+require('dotenv').config();
 
-console.log(process.env)
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -10,10 +10,14 @@ const client = new Client({
 
 client.connect();
 
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
+const getUser = (id) => {
+  client.query(`SELECT * from users WHERE id = ${id};`, (err, res) => {
+    if (err) throw err;
+    res.rows.forEach(row => console.log(JSON.stringify(row)));
+    client.end();
+  });
+};
+
+module.exports = {
+  getUser,
+};
