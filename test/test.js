@@ -55,7 +55,7 @@ describe('server', function() {
 
         request
           .get('/user/abc')
-          .expect(200, done)
+          .expect(404, done)
     })
 
   });
