@@ -11,9 +11,24 @@ import SignUp from '../client/src/components/SignUp.jsx';
 configure({ adapter: new Adapter() });
 
 describe('server', () => {
-  it('Example test should pass', () => {
-    expect(1).to.not.equal(2);
-  });
+  describe('GET /user/:id', () => {
+
+    xit('should return an object of user info when id is a user', function(done) {
+      request
+        .get('/user/1')
+        .expect(200)
+        .expect(/annie/, done) //not perfect put better than anything we got
+    })
+
+    xit('should 404 when given an invalid user id', function(done) {
+      request
+        .get('/user/999999')
+        .expect(404, done)
+
+        request
+          .get('/user/abc')
+          .expect(404, done)
+    })
 });
 
 describe('react router login test', () => {
