@@ -10,17 +10,52 @@
   "scripts": {
     "start": "webpack -d --watch",
     "server": "nodemon --inspect ./server/index.js",
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Updates package
     "test": "jest && mocha ./test/test.js --compilers js:babel-core/register --exit",
+=======
+
+    "test": "jest && mocha ./test/test.js --compilers js:babel-core/register --exit",
+    "lint": "./node_modules/.bin/eslint .",
+<<<<<<< HEAD
+=======
+>>>>>>> Npm installs body parser and axios to handle http requesting
+=======
+>>>>>>> Updates package
+    "test": "jest && mocha ./test/test.js --compilers js:babel-core/register --exit",
+>>>>>>> Clears package json
     "lint": "./node_modules/.bin/eslint ."
   },
   "dependencies": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "babel-plugin-react-transform": "^3.0.0",
+=======
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+>>>>>>> Npm installs body parser and axios to handle http requesting
+=======
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+>>>>>>> Npm installs body parser and axios to handle http requesting
+=======
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+>>>>>>> e2e9c0821155a3f28647b98cba29e9247ca673d2
     "bootstrap": "^4.0.0-beta.3",
     "css-loader": "^0.28.8",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "express-react-engine": "^1.0.0",
+    "express-render-jsx": "^1.0.1",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "nodemon": "^1.14.9",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "pg": "^7.4.1",
     "react": "^16.2.0",

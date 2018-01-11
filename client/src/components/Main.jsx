@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
 import ProfilePage from './ProfilePage.jsx';
 import Login from './Login.jsx';
-import { Link, Route, Switch } from 'react-router-dom';
 import SignUp from './SignUp.jsx';
 
 // The react-route 'render' method takes a callback, which itself takes in props and generates
