@@ -6,7 +6,7 @@ const request = supertest.agent(server);
 
 
 describe('server', function() {
-  console.log(process.env.DATABASE_URL)
+  console.log(process.env)
   describe('GET /user/:id', () => {
 
     it('should return an object of user info when id is a user', function(done) {
