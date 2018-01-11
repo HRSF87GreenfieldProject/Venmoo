@@ -7,16 +7,7 @@ const expressRenderJsx = require('express-render-jsx');
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jsx');
-app.engine('jsx', require('express-render-jsx'));
-
 app.use(express.static(path.join(__dirname, '../client/dist')));
-
-
-
-
-
 
 
 app.get('/user/:id', (req, res) => {
@@ -46,17 +37,13 @@ app.get('/db', (request, response) => {
   });
 });
 
-app.get('/profilepage', (req, res) => {
-  res.status(200).render(path.join(__dirname, '../client/src/components/ProfilePage.jsx'));
-});
+const reactRoute = (req, res) => res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));
 
-app.get('/login', (req, res) => {
-  res.status(200).render(path.join(__dirname, '../client/src/components/Login.jsx'));
-});
+app.get('/profilepage', reactRoute);
 
-app.get('/signup', (req, res) => {
-  res.status(200).render(path.join(__dirname, '../client/src/components/SignUp.jsx'));
-});
+app.get('/login', reactRoute);
+
+app.get('/signup', reactRoute);
 
 if (!module.parent) {
   app.listen(PORT);
