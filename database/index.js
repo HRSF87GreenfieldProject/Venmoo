@@ -10,11 +10,10 @@ const client = new Client({
 
 client.connect();
 
-const getUser = (id) => {
+const getUser = (id, cb) => {
   client.query(`SELECT * from users WHERE id = ${id};`, (err, res) => {
     if (err) throw err;
-    res.rows.forEach(row => console.log(JSON.stringify(row)));
-    client.end();
+    cb(res.rows);
   });
 };
 

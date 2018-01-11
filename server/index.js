@@ -1,6 +1,5 @@
 // import dotenv from 'dotenv';
 const path = require('path');
-const pg = require('pg');
 const express = require('express');
 require('dotenv').config();
 const db = require('../database');
@@ -11,13 +10,20 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/user/:id', (req, res) => {
-  db.getUser(req.params.id);
-  res.end();
+  const { id } = req.params;
+  if (isNaN(Number(id)) || Number(id) % 1 !== 0) {
+    res.status(404).send('invalid user id, should be a postive integer')
+  } else {
+    db.getUser(id, (data) => {
+      if (data.length === 0) res.status(404);
+      res.send(JSON.stringify(data[0]));
+    });
+  }
 });
 
 
 if (!module.parent) {
-  app.listen(PORT)
+  app.listen(PORT);
   console.log(`Listening on ${PORT}`);
 }
 
