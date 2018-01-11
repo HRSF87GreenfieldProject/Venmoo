@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta.3",
+    "combined-stream": "^1.0.5",
     "css-loader": "^0.28.8",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
@@ -27,7 +28,8 @@
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.2.1",
     "reactstrap": "^5.0.0-alpha.4",
-    "style-loader": "^0.19.1"
+    "style-loader": "^0.19.1",
+    "supertest": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",

@@ -1,8 +1,30 @@
-var expect = require('chai').expect;
-var server = require('./../server/index.js');
+const {should, assert} = require('chai');
+const supertest = require('supertest');
+
+const server = require('./../server').app;
+const request = supertest.agent(server);
+
 
 describe('server', function() {
-  it('Example test should pass', function() {
-    expect(1).to.not.equal(2);
-  })
+  console.log(process.env.DATABASE_URL)
+  describe('GET /user/:id', () => {
+
+    it('should return an object of user info when id is a user', function(done) {
+      request
+        .get('/user/1')
+        .expect(200)
+        .expect(/annie/, done) //not perfect put better than anything we got
+    })
+
+    it('should 404 when given an invalid user id', function(done) {
+      request
+        .get('/user/999999')
+        .expect(200, done)
+
+    //     request
+    //       .get('/user/abc')
+    //       .expect(404, done)
+     })
+
+  });
 })
