@@ -34,8 +34,10 @@ app.get('/user/:id', (req, res) => {
     res.status(404).send('invalid user id, should be a postive integer');
   } else {
     db.getUser(id, (data) => {
+      console.log(data);
       if (data.length === 0) res.status(404);
-      res.send(JSON.stringify(data[0]));
+      // res.send(JSON.stringify(data[0]));
+      res.json(data[0]);
     });
   }
 });
@@ -51,7 +53,7 @@ app.get('/signup', reactRoute);
 
 app.get('/profilepage/username/:name', (req, res) => {
   const { name } = req.params;
-  console.log(name);
+  
   const responseData = {};
 
   db.getUserByName(name)
@@ -75,7 +77,7 @@ if (!module.parent) {
 }
 
 const checkDatabaseResponse = function (data, res) {
-  if (data.length === 0 || data.rows.length === 0) res.status(404);
+  if (data.length === 0 || data.rows.length === 0) res.sendStatus(404);
 };
 
 module.exports.app = app;

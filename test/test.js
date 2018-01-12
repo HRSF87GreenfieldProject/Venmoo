@@ -12,28 +12,61 @@ import ProfilePage from '../client/src/components/ProfilePage.jsx';
 import Adapter from 'enzyme-adapter-react-16';
 import SignUp from '../client/src/components/SignUp.jsx';
 
-console.log(process.env.DATABASE_URL);
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 4000;
 
 configure({ adapter: new Adapter() });
 
 describe('server', () => {
   describe('GET /user/:id', () => {
-    xit('should return an object of user info when id is a user', function(done) {
+    it('should return an object of user info when id is a user', function(done) {
       request
-          .get('/user/1')
-          .expect(200)
-          .expect(/annie/, done) //not perfect put better than anything we got
-    })
+        .get('/user/1')
+        .expect(200)
+        .expect(/annie/, done); 
+      // request
+      //   .get('/user/1')
+      //   .then((res) => {
+      //     let data = JSON.parse(res.text);
+      //     console.log(data);
+      //     expect(res.status).to.equal(200);
+      //     expect(data.name).to.equal('annie');
+      //   });
+    });
 
-    xit('should 404 when given an invalid user id', function(done) {
+    it('should 404 when given an invalid user id', function(done) {
       request
         .get('/user/999999')
-        .expect(404, done)
+        .expect(404, done);
 
-        request
-          .get('/user/abc')
-          .expect(404, done)
-    })
+      request
+        .get('/user/abc')
+        .expect(404, done);
+    });
+  });
+
+  describe('GET /profilepage/username/:name', () => {
+    xit('should 404 when given a nonexistent username', function(done) {
+      request
+        .get('/profilepage/username/ljsdflksd')
+        .expect(404, done);
+    });
+
+    xit('should return 200 when a valid username is entered', function(done) {
+      request
+        .get('/profilepage/username/annie')
+        .expect(200, done);
+    });
+
+    xit('should return an object with transactions and user objects')
+      request
+        .get('/profilepage/username/annie')
+        .then((res) => {
+          let data = JSON.parse(res.text);
+          expect(data.hasOwnProperty('user')).to.equal(true);
+          expect(data.user.name).to.equal('annie');
+          expect(data.hasOwnProperty('transactions')).to.equal(true);
+          expect(data.transactions[0].transaction_id).to.equal(1);
+        });
   });
 
   describe('POST /payments and /request', () => {
@@ -58,9 +91,7 @@ describe('server', () => {
     });
 
   })
-
 });
-
 
 describe('react router login test', () => {
   it('should render profile page on login', () => {
