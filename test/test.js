@@ -11,6 +11,7 @@ import { configure, shallow, mount, render } from 'enzyme';
 import ProfilePage from '../client/src/components/ProfilePage.jsx';
 import Adapter from 'enzyme-adapter-react-16';
 import SignUp from '../client/src/components/SignUp.jsx';
+import { response } from './../database/dummy-data.js';
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 4000;
 
@@ -93,19 +94,23 @@ describe('server', () => {
   })
 });
 
-describe('react router login test', () => {
-  it('should render profile page on login', () => {
-    const component = shallow(<ProfilePage />);
-    expect(component.find('div').toExist);
+
+describe('Client', function() {
+  describe('react router login test', () => {
+    it('should render profile page on login', () => {
+      const component = shallow(<ProfilePage user={response.user}/>);
+      expect(component.find('div').toExist);
+    });
+  });
+  
+  describe("react router signup test", () => {
+    it("should render signup on login", () => {
+      const component = shallow(<SignUp />);
+      expect(component.find("div").toExist);
+    });
   });
 });
 
-describe("react router signup test", () => {
-  it("should render signup on login", () => {
-    const component = shallow(<SignUp />);
-    expect(component.find("div").toExist);
-  });
-});
 
 describe('Database', function() {
   describe('getTransactionHistory', function() {
