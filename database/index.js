@@ -3,19 +3,44 @@ require('dotenv').config();
 
 const client = new Client({
   connectionString: `${process.env.DATABASE_URL}?ssl=true`,
-  ssl: true
+  ssl: true,
+  // database: 'venmoo',
 });
 
 client.connect();
 
 const getTransactionHistory = function (userName) {
-  const queryString = `SELECT transactions.amount, transactions.status, transactions.type,
-  transactions.created_timestamp, transactions.resolved_timestamp, transactions.description
-  FROM transactions, users
-  WHERE (transactions.sender_id=users.id AND users.name='${userName}')
-  OR (transactions.receiver_id=users.id AND users.name='${userName}')`;
+  const queryString = `
+  SELECT
+    tab.transaction_id,
+    tab.amount,
+    tab.status,
+    tab.type,
+    tab.created_timestamp,
+    tab.resolved_timestamp,
+    tab.description,
+    tab.sender_name,
+    users.name AS receiver_name
+  FROM
+    (SELECT
+      transactions.id AS transaction_id,
+      transactions.amount,
+      transactions.status,
+      transactions.type,
+      transactions.created_timestamp,
+      transactions.resolved_timestamp,
+      transactions.description,
+      transactions.receiver_id,
+      users.name AS sender_name
+    FROM transactions, users
+    WHERE transactions.sender_id = users.id)
+    AS tab, users
+  WHERE tab.receiver_id=users.id`;
 
-  return client.query(queryString);
+  const specificUserQueryString = `SELECT * FROM (${queryString}) AS data
+  WHERE data.sender_name='${userName}' OR data.receiver_name='${userName}'`;
+
+  return client.query(userName ? specificUserQueryString : queryString);
 };
 
 const getUser = (id, cb) => {
@@ -25,7 +50,16 @@ const getUser = (id, cb) => {
   });
 };
 
+const getUserByName = (name) => {
+  const queryString = `SELECT * FROM users WHERE name = '${name}'`;
+  return client.query(queryString);
+};
+
+
+
+
 module.exports = {
   getUser,
   getTransactionHistory,
+  getUserByName,
 };

@@ -19,8 +19,8 @@ CREATE TABLE transactions (
   sender_id INT references users(id),
   receiver_id INT references users(id),
   amount MONEY NOT NULL,
-  status CHAR(12) NOT NULL,
-  type CHAR(10) NOT NULL,
+  status VARCHAR(12) NOT NULL,
+  type VARCHAR(10) NOT NULL,
   created_timestamp timestamp NOT NULL,
   resolved_timestamp timestamp,
   description VARCHAR(200)
