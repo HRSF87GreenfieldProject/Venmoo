@@ -32,30 +32,20 @@ class TransactionEntry extends React.Component {
     }
 
     return (
-      <p>
-        {text} <br />
-        <span>
-          {timestamp}
-        </span>
-      </p>
+        <div id="transactionCard">
+    <Card>
+      <CardBody>
+        <CardTitle>Transaction:</CardTitle>
+        <CardSubtitle>{timestamp}</CardSubtitle>
+        <CardText>
+          {text}
+        </CardText>
+        <Button>View Profile</Button>
+      </CardBody>
+    </Card>
+  </div>
     )
   }
 }
-// This change here works for the cards, need to refactor below to render top
-// const TransactionEntry = props => (
-//   <div id="transactionCard">
-//     <Card>
-//       <CardBody>
-//         <CardTitle>Transaction:</CardTitle>
-//         <CardSubtitle>???</CardSubtitle>
-//         <CardText>
-//           Some quick example text to build on the card title and make up the
-//           bulk of the card's content.
-//         </CardText>
-//         <Button>Button</Button>
-//       </CardBody>
-//     </Card>
-//   </div>
-// );
 
 export default TransactionEntry;
