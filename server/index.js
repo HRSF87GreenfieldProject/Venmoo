@@ -13,11 +13,10 @@ app.use(bodyParser.json())
 
 app.post('/payment', (req, res) => {
   let {username, amount, isPayment, message} = req.body;
-  console.log('Recieved ' + amount + ' from ' + username + ' who said ' + message);
+  // console.log('Recieved ' + amount + ' from ' + username + ' who said ' + message);
   res.statusCode = 201;
   res.send('Success!')
 });
-
 
 
 app.post('/request', (req, res) => {
@@ -25,7 +24,6 @@ app.post('/request', (req, res) => {
   res.statusCode = 201;
   res.send('Success!');
 });
-
 
 
 app.get('/user/:id', (req, res) => {
@@ -51,7 +49,7 @@ app.get('/signup', reactRoute);
 
 app.get('/profilepage/username/:name', (req, res) => {
   const { name } = req.params;
-  console.log(name);
+  
   const responseData = {};
 
   db.getUserByName(name)
@@ -75,7 +73,7 @@ if (!module.parent) {
 }
 
 const checkDatabaseResponse = function (data, res) {
-  if (data.length === 0 || data.rows.length === 0) res.status(404);
+  if (data.length === 0 || data.rows.length === 0) res.sendStatus(404);
 };
 
 module.exports.app = app;
