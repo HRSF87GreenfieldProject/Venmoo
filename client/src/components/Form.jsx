@@ -64,12 +64,10 @@ class Form extends React.Component {
     })
 
     .then((response) => {
-      console.log('hello');
-      console.log(response.data.rows);
-      this.props.renderUser(this.props.user, response.data.rows);
+      console.log(response)
     })
     .catch((error) => {
-      console.log(error);
+      throw error; 
     });
   }
 

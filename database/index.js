@@ -63,17 +63,46 @@ const createTransaction = (sender_id, receiver_id, amount, isPayment, callback) 
   let timeStamp = isPayment ? 'now(), now()' : 'now(), null';
   return client.query(`INSERT INTO transactions(sender_id, receiver_id, amount, status, type, created_timestamp, resolved_timestamp)
   VALUES(${sender_id},${receiver_id},${amount},${approval},${typeOfTransaction},${timeStamp});`)
-
 };
 
 
-const updateBalance = (isPayment) => {
-  var operation = isPayment ? '+' : '-';
-  const updateReceiver = `UPDATE users
-    SET balance = balance ${operation} ${amount.slice(1)}::float8::numeric::money
-    WHERE id = ${receiver_id};
+const updateBalances = () => {
+  // change status X
+  // change resolved_timestamp X
+  // change balance of both users
+  const response = ['success'];
+
+  const selectQ = `
+    SELECT * FROM transactions order by id desc limit 1;
   `;
+
+  client.query(selectQ)
+    .then((res) => {
+      const { sender_id, receiver_id, amount, type } = res.rows[0];
+      const updateSender = `
+        UPDATE users
+        SET balance = balance - ${amount.slice(1)}::float8::numeric::money
+        WHERE id = ${sender_id};
+      `;
+
+      const updateReceiver = `
+        UPDATE users
+        SET balance = balance + ${amount.slice(1)}::float8::numeric::money
+        WHERE id = ${receiver_id};
+      `;
+
+      return { updateReceiver, updateSender };
+    })
+    .then(({ updateReceiver, updateSender }) => {
+      client.query(updateSender);
+      return updateReceiver;
+    })
+    .then(updateReceiver => client.query(updateReceiver))
+    // .then(cb(['FILL', 'ME', 'IN', response[0]]))
+    .catch((error) => { throw error })
 };
+
+
 const transactionAcceptApprove = (id, cb) => {
   // change status X
   // change resolved_timestamp X
@@ -159,6 +188,7 @@ const getPending = (id, cb) => {
 };
 
 module.exports = {
+  updateBalances,
   getUser,
   getTransactionHistory,
   getUserByName,

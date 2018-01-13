@@ -81,21 +81,23 @@ describe('server', () => {
   describe('POST /payments and /request', () => {
     it('should 201 when posting to /payment', function(done) {
     request
-      .post('/payment', {username: 'test',
+      .post('/payment', {
+        senderObj: { 'id' : 1 },
+        username: 'annie',
         amount: '30',
         isPayment: true,
         message: 'This is a test!'})
-      .expect('Success!')
       .expect(201, done)
     });
 
     it('should 201 when posting to /request', function(done) {
     request
-      .post('/request', {username: 'test',
+      .post('/request', {
+        senderObj: { 'id' : 1 },
+        username: 'annie',
         amount: '30',
         isPayment: false,
         message: 'This is a test!'})
-      .expect('Success!')
       .expect(201, done)
     });
 

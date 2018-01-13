@@ -11,36 +11,53 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json())
 
+
+// `select * from transactions where id = (select last_value from transactions_id_seq);`
+
 app.post('/payment', (req, res) => {
-  let {senderObj, username, amount, isPayment, message} = req.body;
-  console.log('SENDER: ', senderObj);
+  const {
+    senderObj,
+    username,
+    amount,
+    isPayment,
+  } = req.body;
   db.getUserByName(username)
     .then((data) => {
-      let {id, name} = data.rows[0];
+      const { id } = data.rows[0];
       db.createTransaction(senderObj.id, id, amount, isPayment)
-        .then(() => {
-          db.getTransactionHistory(senderObj.name)
-            .then((data) => {
-              let { rows } = data;
-              res.statusCode = 201;
-              res.send(data);
-            })
-        })
-        .catch(() => { console.error() })
-
+        .then(db.updateBalances)
+        .catch(() => console.error())
     })
-    .catch(() => {
-      console.error();
+    .then(() => {
+      res.statusCode = 201;
+      res.end();
     })
+    .catch(() => { console.error(); });
 });
+
 
 // if user is in database
 // find user's balance, and update accordingly
 
 app.post('/request', (req, res) => {
-  let {username, amount, isPayment, message} = req.body;
-  res.statusCode = 201;
-  res.send('Success!');
+  const {
+    senderObj,
+    username,
+    amount,
+    isPayment,
+  } = req.body;
+  db.getUserByName(username)
+    .then((data) => {
+      const { id } = data.rows[0];
+      db.createTransaction(senderObj.id, id, amount, isPayment)
+        .then(db.updateBalances)
+        .then(() => {
+          res.statusCode = 201;
+          res.end();
+        })
+        .catch((error) => { throw error; });
+    })
+    .catch((error) => { throw error; });
 });
 
 
