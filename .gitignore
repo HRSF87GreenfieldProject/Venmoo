@@ -29,11 +29,6 @@ bundle.js
 node_modules/
 bower_components/
 config
-
-#Environmental variables
 .env
-
-#Vsc config
-.vscode
 
 package-lock.json
