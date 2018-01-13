@@ -1,0 +1,162 @@
+body {
+    background-color: whitesmoke; 
+}
+
+div#form {
+  width: 400px;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 400px;
+    align: center;
+}
+
+button#decisionBtn {
+  background-color: rgb(0, 140, 186);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+div#transactionCard {
+    margin-bottom: 15px;
+}
+
+/* new card */
+
+@font-face {
+  font-family: "icons-social";
+  src: url("http://codepen_fonts.johaneg.nl/Entypo-Social.otf");
+}
+
+* {
+  padding: 0;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'avenir';
+}
+
+body {
+  background:
+}
+
+#content {
+  width: 600px;
+  height: 700px;
+  background: #02c2db;
+  border-radius: 15px;
+  box-shadow: 0px 0px 8px black;
+  margin-top: 80px;
+}
+
+#head {
+  width: 100%;
+  height: 275px;
+  background: url("http://codepen_images.johaneg.nl/bg.jpg");
+  background-position: right bottom;
+  background-size: cover;
+  border-radius: 15px 15px 0 0;
+}
+
+#profile_pic {
+  width: 150px;
+  height: 150px;
+  margin-left: 225px;
+  margin-top: -45px;
+  background: url("https://blog.jacksonsystems.com/wp-content/uploads/2011/09/cashcow1-e1316172109326-993x1024.jpg");
+  background-position: left top;
+  background-size: cover;
+  border-radius: 100px;
+  border: 5px solid white;
+  box-shadow: 0px 0px 8px black;
+  position: absolute;
+}
+
+#content h1 {
+  position: absolute;
+  width: 400px;
+  margin-left: 100px;
+  margin-top: 150px;
+  font-size: 50px;
+  color: white;
+}
+
+#content h3 {
+    position: absolute;
+    width: 400px;
+    margin-left: 100px;
+    margin-top: 150px;
+    font-size: 25px;
+    color: white;
+}
+
+.loginButton {
+    margin: 3px;
+
+}
+
+.navbar {
+    background: #02c2db
+}
+
+.title {
+    color: white;
+}
+/* scroll bar*/
+
+/* Just for the example */
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.thin::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(100, 100, 100, 0.4);
+}
+
+.scrollingTransactions {
+    width: 600px;
+    height: 390px;
+    overflow: scroll;
+}
