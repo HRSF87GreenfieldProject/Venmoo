@@ -51,11 +51,6 @@ div#transactionCard {
 
 /* new card */
 
-@font-face {
-  font-family: "icons-social";
-  src: url("http://codepen_fonts.johaneg.nl/Entypo-Social.otf");
-}
-
 * {
   padding: 0;
   margin: 0 auto;
@@ -181,4 +176,15 @@ body.thin::-webkit-scrollbar {
 
 .loginBox {
     margin-top: auto
+}
+
+.toggleFormButton {
+    float: left;
+    height: 50px;
+    width: 100px;
+}
+
+
+.icon {
+    fill: white; 
 }

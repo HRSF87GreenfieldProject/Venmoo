@@ -4,10 +4,12 @@ const bodyParser = require('body-parser')
 require('dotenv').config();
 const db = require('../database');
 const expressRenderJsx = require('express-render-jsx');
+var expressValidator = require("express-validator");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+app.use(expressValidator());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json())
 
@@ -63,11 +65,12 @@ app.get('/user/:id', (req, res) => {
 //comment to make change
 const reactRoute = (req, res) => res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));
 
-app.get('/profilepage', reactRoute);
+app.get("/profilepage", reactRoute);
 
 app.get('/login', reactRoute);
 
 app.get('/signup', reactRoute);
+
 
 app.get('/profilepage/username/:name', (req, res) => {
   const { name } = req.params;
@@ -82,7 +85,7 @@ app.get('/profilepage/username/:name', (req, res) => {
         .then((transactionData) => {
           checkDatabaseResponse(transactionData, res);
           responseData.transactions = transactionData.rows;
-          res.status(200).json(responseData);
+          res.redirect('/profilepage').json(responseData);
         })
         .catch(err => console.error(err));
     })

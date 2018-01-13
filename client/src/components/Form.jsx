@@ -77,7 +77,6 @@ class Form extends React.Component {
     return(
       <div id="form">
         <br />
-        <h1> {this.state.isPayment ? 'TRUE' : 'FALSE'} </h1>
         <div className='tab'>
           <button type="submit" onClick={this.togglePaymentTrue}> Pay </button>
           <button type="submit" onClick={this.togglePaymentFalse}> Request </button>

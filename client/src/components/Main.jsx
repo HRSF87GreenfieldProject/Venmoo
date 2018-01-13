@@ -38,7 +38,7 @@ class Main extends React.Component {
       <div>
         <Switch>
           <Route exact path="/" render={this.generateHomePage} />
-          <Route path="/profilepage/username/:username" render={this.generateProfilePage} />
+          <Route path="/profilepage" render={this.generateProfilePage} />
           <Route path="/signup" component={SignUp} />
         </Switch>
       </div>
