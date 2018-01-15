@@ -21,19 +21,20 @@ class TransactionEntry extends React.Component {
 
 
     return (
-        <div id="transactionCard">
-    <Card>
-      <CardBody>
-        <CardTitle>Transaction:</CardTitle>
-        <CardSubtitle>{moment(timestamp).format('lll')}</CardSubtitle>
-        <CardText>
-          {text}
-        </CardText>
-      </CardBody>
-    </Card>
-  </div>
-    )
+      <div id="transactionCard">
+        <Card>
+          <CardBody>
+            <CardTitle>Transaction:</CardTitle>
+            <CardSubtitle>{moment(timestamp).format('lll')}</CardSubtitle>
+            <CardText>
+              {text}
+            </CardText>
+          </CardBody>
+        </Card>
+      </div>
+    );
   }
 }
 
 export default TransactionEntry;
+

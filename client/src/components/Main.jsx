@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import ProfilePage from './ProfilePage.jsx';
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
