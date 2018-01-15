@@ -81,8 +81,7 @@ app.post('/request', (req, res) => {
   db.getUserByName(username)
     .then((data) => {
       const { id } = data.rows[0];
-      db.createTransaction(senderObj.id, id, amount, isPayment)
-        .then(db.updateBalances)
+      db.createTransaction(id, senderObj.id, amount, isPayment)
         .then(() => {
           res.statusCode = 201;
           res.end();
