@@ -94,10 +94,6 @@ const createTransaction = (sender_id, receiver_id, amount, isPayment, callback) 
 
 
 const updateBalances = () => {
-  // change status X
-  // change resolved_timestamp X
-  // change balance of both users
-  // const response = ['success'];
   const selectQ = `
     SELECT * FROM transactions order by id desc limit 1;
   `;
@@ -124,10 +120,10 @@ const updateBalances = () => {
       return updateReceiver;
     })
     .then(updateReceiver => client.query(updateReceiver))
+    // I don't think this line of code is doing anything, but we're too afraid to delete it.
     // .then(cb(['FILL', 'ME', 'IN', response[0]]))
     .catch((error) => { throw error })
 };
-
 
 const transactionAcceptApprove = (id, cb) => {
   const response = ['success'];
@@ -167,6 +163,7 @@ const transactionAcceptApprove = (id, cb) => {
       return updateReceiver;
     })
     .then(updateReceiver => client.query(updateReceiver))
+    // Whatever is passed into the callback is sent back to the client
     .then(cb(['FILL', 'ME', 'IN', response[0]]));
 };
 
@@ -192,18 +189,7 @@ const transactionAccept = (id, status, cb) => {
 
 const getUserBalance = (name) => {
   return client.query(`select balance from users where name='${name}'`);
-}
-
-
-
-// const getPending = (sender_id, cb) => {
-//   const q = `SELECT * FROM transactions WHERE sender_id = ${sender_id}`;
-//   client.query(q, (err, res) => {
-//     if (err) throw err;
-//     console.log(r)
-//     cb(res.rows);
-//   });
-// };
+};
 
 const getPending = (id, cb) => {
   client.query(`
