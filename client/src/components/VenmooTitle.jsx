@@ -1,11 +1,15 @@
 import React from "react";
 
-const VenmooTitle = props => (
-  <div className="navbar">
-        <h1 className="title">
-          Venmoo
-        </h1>
-    </div>
-);
+export default class VenmooTitle extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-export default VenmooTitle;
+  render() {
+    return (
+    <div className="navbar">
+      <img src="./venmoLogo.svg"/>
+    </div>
+  )}
+}

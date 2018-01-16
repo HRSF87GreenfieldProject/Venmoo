@@ -51,6 +51,9 @@ class Login extends React.Component {
   }
 
   render() {
+    const style = {
+      'margin-left':'-30 px'
+    }
     return (
       <div id="login">
         <p id="loginWarning" className={this.state.displayWarning ? 'display' : 'hide'}>
@@ -59,7 +62,8 @@ class Login extends React.Component {
         <div id="contentLogin">
           <form>
             <div>
-              {insertBreaks(3)}
+              {insertBreaks(2)}
+              <h3> Moove Your Mooney </h3>
               <label>Username:</label>
               <input
                 type="text"
@@ -84,7 +88,7 @@ class Login extends React.Component {
               />
               {insertBreaks(6)}
               <Link to="/signup">
-                <input className="loginButton" type="submit" value="No Account? Sign Up Here" />
+                <input className="loginButton" className="greenbtn" style={style} type="submit" value="No Account? Sign Up Here" />
               </Link>
             </div>
           </form>

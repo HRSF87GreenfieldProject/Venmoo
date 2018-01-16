@@ -110,10 +110,9 @@ class Form extends React.Component {
           <button type="submit" onClick={this.togglePaymentFalse}> Request </button>
         </div>
 
-        <form onSubmit={this.formSubmitHandlerGate}>
-          <br />
-          <br />
+        <form onSubmit={this.formSubmitHandler}>
           <label> To: </label>
+          <br />
           <input type="textarea" onChange={this.otherUserChangeHandler} />
           <p id="loginWarning" className={this.state.userWarning ? 'display' : 'hide'}>
             Invalid Username
